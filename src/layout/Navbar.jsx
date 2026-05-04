@@ -40,6 +40,9 @@ const Navbar = () => {
             <li>
                 <NavLink to="/OpenWeather3">Open Weather 3</NavLink>
             </li>
+            <li>
+                <NavLink to="/Hobbies">Hobbies</NavLink>
+            </li>
         </menu>
 
 
