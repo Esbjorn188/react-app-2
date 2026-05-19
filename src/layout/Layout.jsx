@@ -12,7 +12,7 @@ const Layout = () => {
             {/* pages - pagecomponents */}
         <Outlet></Outlet>
         </main>
-        <Footer className="bg-amber-200"></Footer>
+        <Footer></Footer>
         
 
     </section>

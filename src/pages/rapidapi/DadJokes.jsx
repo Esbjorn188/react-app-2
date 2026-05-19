@@ -9,7 +9,7 @@ import { appConfig } from "../../config/appConfig"
 //hook til akald api
 import useRequestData from "../../hooks/useRequestData"
 
-const Hobbies = () => {
+const DadJokes = () => {
 
     //åbn useRequestData
     const { makeRequest, isLoading, data, error } = useRequestData()
@@ -21,19 +21,19 @@ const Hobbies = () => {
     }, [])
 
     const handleRequest = () => {
-        makeRequest({url : "https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies",
+        makeRequest({url : "https://dad-jokes-by-api-ninjas.p.rapidapi.com/v1/dadjokes",
             headers: {"x-rapidapi-key": import.meta.env.VITE_APP_RAPIDAPIKEY,
-                      "x-rapidapi-host": "hobbies-by-api-ninjas.p.rapidapi.com"
+                      "x-rapidapi-host": "dad-jokes-by-api-ninjas.p.rapidapi.com"
             }
         })
     }
 
   return (
     <section className="mb-5"> 
-      <title>{appConfig.companyName + "Hobbies"}</title>
+      <title>{appConfig.companyName + "Dad Jokes"}</title>
 
 
-        <Title>Hobbies</Title>
+        <Title>Dad Jokes</Title>
 
         {/* loades */}
         {
@@ -50,13 +50,10 @@ const Hobbies = () => {
         {/* der er data */}
         {
             data && <div className="border-2 bg-emerald-700 w-100 ml-16 p-5">
-                <h2 className="text-2xl ml-16"> { data.hobby } </h2>
 
-                <p className="ml-13"> ( Kategori: <span> { data.category } </span> )</p>
+                <p className="ml-2"> {data[0].joke}</p>
 
-                <a className="text-blue-600 border-b-2" href={data.link} target="_blank" rel="noopener noreferrer">Read about your new random hobbie here</a>
-
-                <button className="bg-red-500 mt-5 rounded-4xl cursor-pointer border-2 p-5" onClick={() => handleRequest()}>Give me a randomised new hobbie</button>
+                <button className="bg-red-500 mt-5 rounded-4xl cursor-pointer border-2 p-5" onClick={() => handleRequest()}>Random Dad joke</button>
             </div>
         }
 
@@ -66,4 +63,4 @@ const Hobbies = () => {
   )
 }
 
-export default Hobbies
+export default DadJokes

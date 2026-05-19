@@ -31,7 +31,6 @@ const OpenWeather1 = () => {
                 units: "metric",
                 apiKey: import.meta.env.VITE_APP_OPENWEATHERAPIKEY
             }
-
         })
     }
      }, [ zip ] ) 

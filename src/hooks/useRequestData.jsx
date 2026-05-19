@@ -28,13 +28,41 @@ const useRequestData = () => {
 
             // prøv at gøre dette
             // ... hvis det går godt, fortsætter vi her ... get Get geT
+            // GET
             if(method.toUpperCase() === "GET") {
 
                 response = await axios.get(url, {headers, params} )
 
                 //HUSK håntering af POST PUT PATCH DELETE
 
-            } else {
+            } 
+            // POST
+            else if( method.toUpperCase() === "POST" ) {
+
+                response = await axios.post( url, body, { headers, params } )
+
+            }
+            // PUT
+            else if( method.toUpperCase() === "PUT" ) {
+
+                response = await axios.put( url, body, { headers, params } )
+
+            }
+            // PATCH
+            else if( method.toUpperCase() === "PATCH" ) {
+
+                response = await axios.patch( url, body, { headers, params } )
+
+            }
+            // DELETE
+            else if( method.toUpperCase() === "DELETE" ) {
+
+                response = await axios.delete( url, { headers, params } )
+
+            }
+            
+            
+            else {
                 throw new Error("Forkert metode - vælg GET POST PUT PATCH eller DELETE")
             }
 
@@ -45,6 +73,9 @@ const useRequestData = () => {
             setError( error.message)
             setData( null ) // nulstil data
             //hvis det går galt - error - så gør det her 
+
+            //send fejlen videre
+            throw error
             
 
         } finally {

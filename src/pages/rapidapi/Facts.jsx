@@ -9,7 +9,7 @@ import { appConfig } from "../../config/appConfig"
 //hook til akald api
 import useRequestData from "../../hooks/useRequestData"
 
-const Hobbies = () => {
+const Facts = () => {
 
     //åbn useRequestData
     const { makeRequest, isLoading, data, error } = useRequestData()
@@ -17,23 +17,22 @@ const Hobbies = () => {
     useEffect (() => {
         
         handleRequest()
-
     }, [])
 
     const handleRequest = () => {
-        makeRequest({url : "https://hobbies-by-api-ninjas.p.rapidapi.com/v1/hobbies",
+        makeRequest({url : "https://facts-by-api-ninjas.p.rapidapi.com/v1/facts",
             headers: {"x-rapidapi-key": import.meta.env.VITE_APP_RAPIDAPIKEY,
-                      "x-rapidapi-host": "hobbies-by-api-ninjas.p.rapidapi.com"
+                      "x-rapidapi-host": "facts-by-api-ninjas.p.rapidapi.com"
             }
         })
     }
 
   return (
     <section className="mb-5"> 
-      <title>{appConfig.companyName + "Hobbies"}</title>
+      <title>{appConfig.companyName + "Facts"}</title>
 
 
-        <Title>Hobbies</Title>
+        <Title>Facts</Title>
 
         {/* loades */}
         {
@@ -49,21 +48,23 @@ const Hobbies = () => {
 
         {/* der er data */}
         {
-            data && <div className="border-2 bg-emerald-700 w-100 ml-16 p-5">
-                <h2 className="text-2xl ml-16"> { data.hobby } </h2>
 
-                <p className="ml-13"> ( Kategori: <span> { data.category } </span> )</p>
+          data && <div>
 
-                <a className="text-blue-600 border-b-2" href={data.link} target="_blank" rel="noopener noreferrer">Read about your new random hobbie here</a>
-
-                <button className="bg-red-500 mt-5 rounded-4xl cursor-pointer border-2 p-5" onClick={() => handleRequest()}>Give me a randomised new hobbie</button>
+            <p className="ml-12 bg-emerald-700 border-2 p-5 w-50">{data[0].fact}</p>
+            
+            <button className="bg-green-500 mt-5 ml-12 mb-5 rounded-4xl cursor-pointer border-2 p-4" onClick={() => handleRequest()}>New randomised fact</button>
+            
             </div>
+          
+
+          
         }
 
 
-        <p className='ml-18'> fra RapidAPI</p>
+        <p className='ml-16'> fra RapitAPI</p>
     </section>
   )
 }
 
-export default Hobbies
+export default Facts
